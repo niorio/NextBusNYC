@@ -1,0 +1,11 @@
+.stop-info.collapsed{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+.stop-info{
+  max-height: 500px;
+  transition: max-height 0.5s;
+  background-color: blue;
+
+}
