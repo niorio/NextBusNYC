@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+ /*RESET*/
+
+ html, body, a, h1, h2, h3, section, ul, li, div, button, input, textarea {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font: inherit;
+   color: inherit;
+ }
+
+ /*CLEARFIX*/
+
+ .group:after{
+   content: "";
+   display: block;
+   clear: both;
+ }

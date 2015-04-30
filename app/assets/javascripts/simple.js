@@ -57,14 +57,16 @@ $(function () {
   var showBuses = function($stopInfo){
 
     var stopId = $stopInfo.attr('id');
-    console.log(stopId)
+    $stopInfo.empty();
 
     var renderBuses = function(buses){
       buses.forEach(function(bus){
+        console.log(bus);
         $bus = $('<div>').addClass('bus');
         $line = $('<div>').text(bus.line);
         $des = $('<div>').text(bus.destination);
-        $bus.append($line, $des);
+        $dis = $('<div>').text(bus.distance);
+        $bus.append($line, $des, $dis);
         $stopInfo.append($bus)
       })
       setTimeout(function(){
