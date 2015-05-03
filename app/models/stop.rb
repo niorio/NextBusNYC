@@ -21,16 +21,14 @@ class Stop < ActiveRecord::Base
       bus['distance'] = mvj['MonitoredCall']['Extensions']['Distances']['PresentableDistance']
       bus['destination'] = mvj['DestinationName']
 
-      if mvj['ProgressRate'] != "normalProgress"
-        bus['moving'] = false
+      if mvj['ProgressRate'] == "normalProgress"
+        bus['status'] = "moving"
+      elsif mvj['ProgressStatus'] && mvj['ProgressStatus'].include?('layover')
+        bus['status'] = "layover"
       else
-        bus['moving'] = true
+        bus['status'] = "not moving"
       end
-      if mvj['ProgressStatus'] && mvj['ProgressStatus'].include?('layover')
-        bus['layover'] = true
-      else
-        bus['layover'] = false
-      end
+
       buses << bus
     end
 
