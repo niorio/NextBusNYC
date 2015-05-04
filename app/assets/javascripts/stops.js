@@ -5,18 +5,7 @@ $(function () {
       getStops(position.coords.latitude, position.coords.longitude);
     });
   } else {
-    getStopsWithoutGeolocation();
-  }
-
-  var getStopsWithoutGeolocation = function (){
-    $.ajax({
-      url:'api/stops/nearby',
-      method: 'get',
-      datatype: "json",
-      data: {no_location: true},
-      success: renderStops
-    })
-
+    $('#content').text("unable to get location");
   }
 
   var getStops = function (lat, long){
@@ -60,13 +49,13 @@ $(function () {
     $stopInfo.empty();
 
     var renderBuses = function(buses){
-      buses.forEach(function(bus){
-        console.log(bus);
-        $bus = $('<div>').addClass('bus');
-        $line = $('<div>').text(bus.line);
-        $des = $('<div>').text(bus.destination);
-        $dis = $('<div>').text(bus.distance);
-        $bus.append($line, $des, $dis);
+      buses.forEach(function(bus){ 
+        $bus = $('<div>').addClass('bus group');
+        $line = $('<div class="line">').text(bus.line);
+        $des = $('<div class="destination">').text(bus.destination);
+        $dis = $('<div class="distance">').text(bus.distance);
+        $status = $('<div class="status">').text(bus.status);
+        $bus.append($line, $des, $dis, $status);
         $stopInfo.append($bus)
       })
       setTimeout(function(){
@@ -82,7 +71,6 @@ $(function () {
       data: {stop_id: stopId},
       success: renderBuses
     })
-
 
   }
 

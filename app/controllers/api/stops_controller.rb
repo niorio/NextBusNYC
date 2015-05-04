@@ -1,12 +1,8 @@
 class Api::StopsController < ApplicationController
 
   def nearby
-    if params[:no_location]
-      here = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)
-    else
-      here = Geokit::LatLng.new(params[:lat], params[:long])
-    end
-    @stops = Stop.by_distance({ origin: here }).limit(8)
+    here = Geokit::LatLng.new(params[:lat], params[:long])
+    @stops = Stop.by_distance({ origin: here }).limit(10)
     render json: @stops
   end
 

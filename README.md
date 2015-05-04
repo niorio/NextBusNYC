@@ -1,3 +1,3 @@
 #NextBus
 
-Work in progress: a mobile-friendly web app to quickly tell you how far away the next bus is
+A mobile-friendly web app for the NYC Bus system.  Your location is used to find the nearest bus stops, which can then be tapped or clicked for information about incoming buses.
