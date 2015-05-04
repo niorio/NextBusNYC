@@ -1,12 +1,15 @@
 $(function () {
 
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      getStops(position.coords.latitude, position.coords.longitude);
-    });
-  } else {
-    $('#content').text("unable to get location");
-  }
+  setTimeout(function(){
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        getStops(position.coords.latitude, position.coords.longitude);
+      });
+    } else {
+      $('#content').text("unable to get location");
+    }
+  }, 0)
+
 
   var getStops = function (lat, long){
 
@@ -49,7 +52,7 @@ $(function () {
     $stopInfo.empty();
 
     var renderBuses = function(buses){
-      buses.forEach(function(bus){ 
+      buses.forEach(function(bus){
         $bus = $('<div>').addClass('bus group');
         $line = $('<div class="line">').text(bus.line);
         $des = $('<div class="destination">').text(bus.destination);
@@ -58,9 +61,7 @@ $(function () {
         $bus.append($line, $des, $dis, $status);
         $stopInfo.append($bus)
       })
-      setTimeout(function(){
-        $stopInfo.removeClass('collapsed');
-      }, 0)
+      $stopInfo.removeClass('collapsed');
 
     }
 
