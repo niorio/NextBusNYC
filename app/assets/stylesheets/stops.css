@@ -61,7 +61,7 @@ h1 strong{
 
 .stop{
   background-color: #eee;
-  border-top: 5px solid #fff;
+  margin-top: 5px;
   cursor: pointer;
   padding: 5px;
   font-size: 25px;
