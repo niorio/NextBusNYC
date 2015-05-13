@@ -11,7 +11,7 @@ class Api::StopsController < ApplicationController
       { params: {
         key: ENV['BUS_TIME_KEY'],
         MonitoringRef: params[:stop_id],
-        MaximumStopVisits: 5
+        MaximumStopVisits: 4
       } }
 
     buses = Stop.parse_bus_data(response)

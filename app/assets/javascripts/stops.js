@@ -61,6 +61,11 @@ $(function () {
         $bus.append($line, $des, $dis, $status);
         $stopInfo.append($bus)
       })
+
+      if (buses.length === 0){
+        $stopInfo.append($('<div class="bus">No Buses</div>'))
+      }
+
       $stopInfo.removeClass('collapsed');
 
     }
