@@ -10,8 +10,6 @@ $(function () {
 
 
   var getStops = function(position) {
-    console.log(position)
-
     $.ajax({
       url:'api/stops/nearby',
       method: 'get',
