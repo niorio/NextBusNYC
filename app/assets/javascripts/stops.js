@@ -2,22 +2,21 @@ $(function () {
 
   setTimeout(function(){
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        getStops(position.coords.latitude, position.coords.longitude);
-      });
+      navigator.geolocation.getCurrentPosition(getStops);
     } else {
       $('#content').text("unable to get location");
     }
   }, 0)
 
 
-  var getStops = function (lat, long){
+  var getStops = function(position) {
+    console.log(position)
 
     $.ajax({
       url:'api/stops/nearby',
       method: 'get',
       datatype: "json",
-      data: {lat: lat, long: long},
+      data: {lat: position.coords.latitude, long: position.coords.longitude},
       success: renderStops
     })
   }
