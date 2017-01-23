@@ -5,8 +5,18 @@ class Stop < ActiveRecord::Base
                    :lng_column_name => :longitude,
                    :distance_field_name => :distance
 
-  def self.parse_bus_data(data)
+  def self.fetch_buses_for_stop(stop_id)
+    response = RestClient.get 'http://bustime.mta.info/api/siri/stop-monitoring.json',
+      { params: {
+        key: ENV['BUS_TIME_KEY'],
+        MonitoringRef: stop_id,
+        MaximumStopVisits: 4
+      } }
+    parse_bus_data(response)
+  end
 
+  private
+  def self.parse_bus_data(data)
     data = JSON.parse(data)
     stop_data = data['Siri']['ServiceDelivery']['StopMonitoringDelivery']
 
@@ -34,6 +44,5 @@ class Stop < ActiveRecord::Base
 
     buses
   end
-
 
 end

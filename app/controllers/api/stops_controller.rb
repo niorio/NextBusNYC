@@ -7,17 +7,8 @@ class Api::StopsController < ApplicationController
   end
 
   def buses
-    response = RestClient.get 'http://bustime.mta.info/api/siri/stop-monitoring.json',
-      { params: {
-        key: ENV['BUS_TIME_KEY'],
-        MonitoringRef: params[:stop_id],
-        MaximumStopVisits: 4
-      } }
-
-    buses = Stop.parse_bus_data(response)
-
+    buses = Stop.fetch_buses_for_stop(params[:stop_id])
     render json: buses
-
   end
 
 end
