@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150421010815) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "stops", force: true do |t|
+  create_table "stops", force: :cascade do |t|
     t.string   "name",       null: false
     t.float    "latitude",   null: false
     t.float    "longitude",  null: false
