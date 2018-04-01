@@ -16,7 +16,6 @@ class StopList extends React.Component{
     }
 
     getStops(pos) {
-        console.log(pos)
         fetch('api/stops/nearby?lat=' + pos.coords.latitude + '&long=' + pos.coords.longitude)
             .then(res => res.json())
             .then(

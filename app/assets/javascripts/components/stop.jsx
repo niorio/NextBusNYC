@@ -9,7 +9,7 @@ class Stop extends React.Component {
     }
 
     handleClick(){
-        if (this.state.buses.count > 0){
+        if (this.state.buses.length > 0){
             this.setState({buses: []})
         } else {
             this.getBuses()
@@ -17,7 +17,6 @@ class Stop extends React.Component {
     }
 
     getBuses(){
-        console.log(this.props)
         fetch('api/stops/buses?stop_id=' + this.props.stop.id)
             .then(res => res.json())
             .then(
@@ -34,7 +33,18 @@ class Stop extends React.Component {
 
     render(){
         return(
-            <li class="uk-button uk-button-primary uk-width-1-1 .uk-margin-small" onClick={this.handleClick}>{this.props.stop.name}</li>
+            <div className="uk-margin-bottom-small">
+                <li className="uk-button uk-button-primary uk-width-1-1" onClick={this.handleClick}>{this.props.stop.name}</li>
+                <ul className="uk-list uk-list-divider uk-margin-small">
+                { this.state.buses.map((bus, idx) => 
+                    <li key={idx}>
+                    <span className="uk-badge uk-margin-right">{bus.line}</span>
+                    {bus.destination}
+                    <small className="uk-align-right">{bus.distance} / {bus.status}</small>
+                    </li>
+                ) }
+                </ul>
+            </div>
         )
     }
 }
