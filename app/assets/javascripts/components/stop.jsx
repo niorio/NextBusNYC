@@ -33,14 +33,14 @@ class Stop extends React.Component {
 
     render(){
         return(
-            <div className="uk-margin-bottom-small">
-                <li className="uk-button uk-button-primary uk-width-1-1" onClick={this.handleClick}>{this.props.stop.name}</li>
-                <ul className="uk-list uk-list-divider uk-margin-small">
+            <div>
+                <li className="btn btn-secondary btn-lg btn-block mt-1" onClick={this.handleClick}>{this.props.stop.name}</li>
+                <ul className="list-group list-group-flush">
                 { this.state.buses.map((bus, idx) => 
-                    <li key={idx}>
-                    <span className="uk-badge uk-margin-right">{bus.line}</span>
-                    {bus.destination}
-                    <small className="uk-align-right">{bus.distance} / {bus.status}</small>
+                    <li className="list-group-item p-1 text-truncate" key={idx}>
+                        <span className="badge badge-primary mr-2">{bus.line}</span>
+                        {bus.destination}
+                        <small className="float-right text-muted">{bus.distance} / {bus.status}</small>
                     </li>
                 ) }
                 </ul>
